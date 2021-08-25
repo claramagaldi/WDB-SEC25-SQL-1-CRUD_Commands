@@ -1,0 +1,45 @@
+>>>>>>>>>> Create <<<<<<<<<<
+
+CREATE TABLE products (
+  id INT NOT NULL,
+  name STRING,
+  price MONEY,
+  PRIMARY KEY (id)
+);
+
+CREATE TABLE orders (
+  id int not NULL,
+  order_number int,
+  customer_id int,
+  product_id int,
+  primary key(id),
+  foreign key(customer_id) references customers(id),
+  foreign key(product_id) references customers(id)
+)
+
+INSERT INTO products VALUES (1, "Pen", 1.20);
+
+INSERT INTO products (id, name) VALUES (2, "Pencil");
+
+
+
+>>>>>>>>>> Read <<<<<<<<<<
+
+SELECT * FROM 'customers';
+
+SELECT orders.order_number, customers.first_name, customers.last_name, customers.address
+FROM orders INNER JOIN customers ON orders.customer_id = customers.id
+
+
+
+>>>>>>>>>> Update <<<<<<<<<<
+
+UPDATE products SET price = 0.80 WHERE id=2;
+
+ALTER TABLE products ADD stock INT;
+
+
+
+>>>>>>>>>> Destroy <<<<<<<<<<
+
+DELETE FROM products WHERE id=2
